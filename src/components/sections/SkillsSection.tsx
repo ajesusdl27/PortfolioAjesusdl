@@ -1,10 +1,12 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion, useInView, type Variants } from "framer-motion";
+import { useRef, type ReactElement } from "react";
 import { skillCategories, type SkillCategory } from "../../data/skills";
 import TechBadge from "../ui/TechBadge";
 
+const revealEase = [0.215, 0.61, 0.355, 1] as const;
+
 /* ── SVG Icons by category ── */
-const icons: Record<string, JSX.Element> = {
+const icons: Record<string, ReactElement> = {
   mobile: (
     <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
       <rect x="5" y="2" width="14" height="20" rx="3" />
@@ -36,7 +38,7 @@ const icons: Record<string, JSX.Element> = {
   ),
 };
 
-const container = {
+const container: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -44,17 +46,17 @@ const container = {
   },
 };
 
-const cardVariant = {
+const cardVariant: Variants = {
   hidden: { opacity: 0, y: 40, scale: 0.95 },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.6, ease: [0.215, 0.61, 0.355, 1] },
+    transition: { duration: 0.6, ease: revealEase },
   },
 };
 
-const badgeVariant = {
+const badgeVariant: Variants = {
   hidden: { opacity: 0, scale: 0.5, filter: "blur(4px)" },
   visible: {
     opacity: 1,
@@ -125,7 +127,7 @@ export default function SkillsSection() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: [0.215, 0.61, 0.355, 1] }}
+          transition={{ duration: 0.7, ease: revealEase }}
           className="mb-16"
         >
           <p className="font-mono text-xs text-accent/60 tracking-[0.25em] uppercase mb-3">

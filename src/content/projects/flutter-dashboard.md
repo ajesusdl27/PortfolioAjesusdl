@@ -1,20 +1,19 @@
 ---
-title: "Dashboard analítico en Flutter"
-description: "Dashboard de analítica en tiempo real para móvil, con gráficas interactivas, widgets KPI y modo oscuro. Construido con Flutter y conectado a un backend REST API."
-tags: ["Móvil", "Dashboard", "Visualización de datos"]
-tech: ["Flutter", "Dart", "fl_chart", "REST API", "BLoC"]
+title: "La Novia Jerez"
+description: "Blog desarrollado para cliente con Astro, Supabase y Cloudinary, enfocado en una presencia editorial cuidada, rápida y fácil de gestionar."
+tags: ["Blog", "Contenido", "Editorial"]
+tech: ["Astro", "Supabase", "Cloudinary"]
 featured: false
-bentoSize: "medium"
-github: "https://github.com/yourhandle/flutter-dashboard"
-year: 2024
+bentoSize: "small"
+year: 2026
 order: 3
 ---
 
 ## Resumen
 
-Un dashboard de analítica mobile-first con:
+Blog para cliente pensado para publicar contenido de forma ágil con una base moderna y mantenible:
 
-- **Gráficas interactivas** — Gráficas de líneas, barras y pastel con gestos táctiles usando fl_chart
-- **Widgets responsive** — Tarjetas KPI que se adaptan al tamaño de pantalla con animaciones fluidas
-- **Gestión de estado** — Patrón BLoC para un flujo de datos predecible y testeable
-- **Tematización** — Soporte completo para modo oscuro/claro con tokens de diseño de Material 3
+- **Base estática rápida** — Astro para priorizar rendimiento, SEO y simplicidad de despliegue
+- **Gestión de datos** — Supabase para cubrir la parte dinámica y de administración
+- **Imágenes y recursos** — Cloudinary para optimizar y servir contenido multimedia
+- **Enfoque editorial** — Estructura pensada para lectura cómoda y mantenimiento sencillo

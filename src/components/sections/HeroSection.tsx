@@ -219,7 +219,7 @@ export default function HeroSection() {
           className="mb-6"
         >
           <p className="text-base sm:text-lg text-slate-500 max-w-xl mx-auto mb-12 leading-relaxed">
-            {"< Desarrollador Flutter y Astro />"}
+            {"< Desarrollador Flutter y Astro Freelance />"}
           </p>
         </motion.div>
 
@@ -230,10 +230,10 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 1.3 }}
           className="text-base sm:text-lg text-slate-500 max-w-xl mx-auto mb-12 leading-relaxed"
         >
-          Creando{" "}
-          <span className="text-slate-300">apps móviles de alto rendimiento</span> y{" "}
-          <span className="text-slate-300">experiencias web inmersivas</span>{" "}
-          con una atención obsesiva al detalle.
+          Desarrollando{" "}
+          <span className="text-slate-300">apps móviles</span> y{" "}
+          <span className="text-slate-300">experiencias web</span> para clientes,
+          trabajando cada proyecto de forma independiente y con atención obsesiva al detalle.
         </motion.p>
 
         {/* CTA Buttons */}

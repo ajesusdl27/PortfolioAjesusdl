@@ -1,22 +1,21 @@
 ---
-title: "App de e-commerce en Flutter"
-description: "Una aplicación móvil de e-commerce completa construida con Flutter, con catálogo de productos, gestión de carrito, pagos con Stripe y seguimiento de pedidos en tiempo real con Firebase."
-tags: ["Móvil", "E-Commerce", "Multiplataforma"]
-tech: ["Flutter", "Dart", "Firebase", "Stripe", "Riverpod"]
+title: "Lupi Moda Caballero"
+description: "E-commerce minimalista desarrollado para cliente, centrado en una experiencia limpia y directa de compra. Construido con Astro, Nano Stores, Supabase, Cloudinary y Stripe."
+tags: ["E-Commerce", "Moda", "Minimalista"]
+tech: ["Astro", "Nano Stores", "Supabase", "Cloudinary", "Stripe"]
 featured: true
 bentoSize: "large"
-github: "https://github.com/yourhandle/flutter-ecommerce"
-demo: "https://play.google.com/store/apps/details?id=com.yourname.ecommerce"
-year: 2025
+demo: "https://lupimodacaballero.es"
+year: 2026
 order: 1
 ---
 
 ## Resumen
 
-App de e-commerce lista para producción que da servicio a más de 10k usuarios con:
+Proyecto de e-commerce para cliente enfocado en una estética sobria y una navegación clara:
 
-- **Sistema de UI personalizado** — Librería reutilizable de widgets con layouts adaptativos para móvil y tablet
-- **Gestión de estado** — Riverpod para una arquitectura reactiva y testeable
-- **Pagos** — Integración con Stripe y soporte para Apple Pay y Google Pay
-- **Tiempo real** — Firebase Firestore para estado de pedidos en vivo y actualización de inventario
-- **Rendimiento** — Lazy loading, caché de imágenes y renderizado optimizado de listas para scroll a 60fps
+- **Diseño minimalista** — Interfaz limpia para destacar producto, marca y conversión
+- **Catálogo y contenido** — Gestión de imágenes y recursos con Cloudinary
+- **Datos y soporte backend** — Integración con Supabase para la parte dinámica del proyecto
+- **Estado en frontend** — Nano Stores para una gestión ligera y predecible
+- **Pagos** — Integración con Stripe para completar el flujo de compra

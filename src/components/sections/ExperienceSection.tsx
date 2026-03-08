@@ -23,10 +23,10 @@ export default function ExperienceSection() {
             / Experiencia
           </p>
           <h2 className="font-heading font-bold text-3xl md:text-5xl text-white tracking-tight mb-4">
-            Trayectoria <span className="text-shimmer">profesional</span>
+            Experiencia <span className="text-shimmer">actual</span>
           </h2>
           <p className="text-slate-500 max-w-md text-sm">
-            Mi recorrido profesional construyendo productos digitales.
+            Mi experiencia actual desarrollando proyectos freelance para clientes con Flutter y Astro.
           </p>
         </motion.div>
 
