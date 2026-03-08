@@ -233,7 +233,8 @@ export default function HeroSection() {
           Desarrollando{" "}
           <span className="text-slate-300">apps móviles</span> y{" "}
           <span className="text-slate-300">experiencias web</span> para clientes,
-          trabajando cada proyecto de forma independiente y con atención obsesiva al detalle.
+          combinando ejecución independiente, atención al detalle y un flujo de trabajo
+          apoyado en IA para entregar más rápido y con mejor criterio técnico.
         </motion.p>
 
         {/* CTA Buttons */}

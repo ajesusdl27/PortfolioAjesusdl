@@ -58,6 +58,7 @@ export const skillCategories: SkillCategory[] = [
       "Git",
       "GitHub Actions",
       "VS Code",
+      "Desarrollo asistido por IA",
       "Figma",
       "CI/CD",
       "Testing",
