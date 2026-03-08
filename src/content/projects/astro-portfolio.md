@@ -5,8 +5,7 @@ tags: ["Web", "Portfolio", "Static"]
 tech: ["Astro", "React", "TypeScript", "Tailwind CSS", "Framer Motion"]
 featured: true
 bentoSize: "medium"
-github: "https://github.com/yourhandle/portfolio"
-demo: "https://yourname.dev"
+github: "https://github.com/ajesusdl27/PortfolioAjesusdl"
 year: 2026
 order: 2
 ---

@@ -1,43 +1,77 @@
-# Astro Starter Kit: Minimal
+# Portfolio de Antonio Jesús
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Portfolio personal desarrollado con Astro, React, TypeScript, Tailwind CSS y Framer Motion. El objetivo del proyecto es presentar mi trabajo como desarrollador freelance centrado en Flutter y Astro, con una interfaz cuidada, animaciones fluidas y una estructura fácil de mantener.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Demo
 
-## 🚀 Project Structure
+El despliegue final se publicará en Vercel. Mientras tanto, este repositorio contiene el código fuente completo del portfolio.
 
-Inside of your Astro project, you'll see the following folders and files:
+## Stack
+
+- Astro 5
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- Framer Motion
+
+## Qué incluye
+
+- Hero animado con presentación personal y llamadas a la acción
+- Sección Sobre mí orientada a trabajo freelance para clientes
+- Sección de habilidades organizada por categorías
+- Grid de proyectos destacados con contenido gestionado desde Markdown
+- Sección de experiencia y contacto
+- Estética glassmorphism con fondo dinámico y microinteracciones
+
+## Proyectos destacados
+
+- Lupi Moda Caballero: e-commerce minimalista para cliente con Astro, Nano Stores, Supabase, Cloudinary y Stripe
+- La Novia Jerez: blog para cliente con Astro, Supabase y Cloudinary
+- Este portfolio: sitio estático con Astro, React, Tailwind CSS y Framer Motion
+
+## Estructura
 
 ```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+src/
+├── components/
+│   ├── layout/
+│   ├── sections/
+│   └── ui/
+├── content/
+│   └── projects/
+├── data/
+├── hooks/
+├── layouts/
+├── pages/
+└── styles/
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Scripts
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```bash
+npm install
+npm run dev
+npm run build
+npm run preview
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Personalización
 
-## 🧞 Commands
+- Edita los proyectos en `src/content/projects/`
+- Actualiza experiencia y habilidades en `src/data/`
+- Cambia textos y enlaces en `src/components/sections/` y `src/components/layout/`
+- Ajusta estilos globales y animaciones en `src/styles/global.css`
 
-All commands are run from the root of the project, from a terminal:
+## Despliegue
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+La opción prevista para producción es Vercel. Cuando exista dominio final, conviene añadir la propiedad `site` en `astro.config.mjs` para generar canonical y metadatos absolutos correctamente.
 
-## 👀 Want to learn more?
+## Estado del repositorio
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Este repositorio está preparado para usarse como referencia pública del portfolio. El contenido se centra en proyectos reales y en una implementación visual orientada a rendimiento y presentación profesional.
+
+## Enlaces
+
+- Repositorio: https://github.com/ajesusdl27/PortfolioAjesusdl
+- GitHub: https://github.com/ajesusdl27
+- LinkedIn: https://www.linkedin.com/in/antonio-jes%C3%BAs-dom%C3%ADnguez-l%C3%B3pez-3882b5385/
