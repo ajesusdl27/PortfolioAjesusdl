@@ -1,0 +1,124 @@
+---
+const navLinks = [
+  { label: "About", href: "#about" },
+  { label: "Skills", href: "#skills" },
+  { label: "Projects", href: "#projects" },
+  { label: "Experience", href: "#experience" },
+  { label: "Contact", href: "#contact" },
+];
+---
+
+<nav
+  id="main-nav"
+  class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-auto transition-all duration-500"
+>
+  <div
+    class="flex items-center gap-1 px-2 py-2
+           bg-white/[0.03] backdrop-blur-2xl border border-white/[0.06]
+           rounded-2xl shadow-[0_0_40px_rgba(0,0,0,0.3)]"
+  >
+    <!-- Logo -->
+    <a
+      href="#hero"
+      class="flex items-center justify-center w-9 h-9 rounded-xl
+             bg-accent/10 text-accent font-heading font-bold text-sm
+             hover:bg-accent/20 transition-colors shrink-0"
+    >
+      YN
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="hidden md:flex items-center gap-0.5 ml-1">
+      {
+        navLinks.map(({ label, href }) => (
+          <li>
+            <a
+              href={href}
+              data-nav-link
+              class="relative px-3.5 py-2 text-xs font-medium text-slate-500
+                     hover:text-white transition-all duration-300 rounded-xl
+                     hover:bg-white/[0.04]"
+            >
+              {label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <!-- Mobile hamburger -->
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden flex items-center justify-center w-9 h-9 rounded-xl
+             text-slate-500 hover:text-white hover:bg-white/[0.04] transition-all ml-1"
+      aria-label="Toggle menu"
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="3" y1="6" x2="21" y2="6" />
+        <line x1="3" y1="12" x2="21" y2="12" />
+        <line x1="3" y1="18" x2="21" y2="18" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    class="md:hidden hidden mt-2 bg-white/[0.03] backdrop-blur-2xl
+           border border-white/[0.06] rounded-2xl overflow-hidden
+           shadow-[0_0_40px_rgba(0,0,0,0.3)]"
+  >
+    <ul class="flex flex-col p-2 gap-0.5">
+      {
+        navLinks.map(({ label, href }) => (
+          <li>
+            <a
+              href={href}
+              data-mobile-nav-link
+              class="block px-4 py-2.5 text-xs font-medium text-slate-500
+                     hover:text-white hover:bg-white/[0.04] rounded-xl transition-all"
+            >
+              {label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</nav>
+
+<script>
+  // Mobile menu toggle
+  const btn = document.getElementById("mobile-menu-btn");
+  const menu = document.getElementById("mobile-menu");
+  btn?.addEventListener("click", () => menu?.classList.toggle("hidden"));
+  document.querySelectorAll("[data-mobile-nav-link]").forEach((link) => {
+    link.addEventListener("click", () => menu?.classList.add("hidden"));
+  });
+
+  // Active link via IntersectionObserver
+  const sections = document.querySelectorAll("section[id]");
+  const navLinks = document.querySelectorAll("[data-nav-link]");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          navLinks.forEach((link) => {
+            const href = link.getAttribute("href");
+            if (href === `#${entry.target.id}`) {
+              link.classList.add("text-white", "bg-white/[0.06]");
+              link.classList.remove("text-slate-500");
+            } else {
+              link.classList.remove("text-white", "bg-white/[0.06]");
+              link.classList.add("text-slate-500");
+            }
+          });
+        }
+      });
+    },
+    { rootMargin: "-20% 0px -75% 0px" }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+</script>
