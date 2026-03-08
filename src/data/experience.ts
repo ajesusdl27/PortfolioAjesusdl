@@ -8,35 +8,35 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
-    company: "Tech Company",
-    role: "Senior Flutter Developer",
-    period: "2024 — Present",
+    company: "Empresa tecnológica",
+    role: "Desarrollador Flutter Senior",
+    period: "2024 — Actualidad",
     description:
-      "Leading Flutter mobile development for a cross-platform fintech app. Architecting widget systems, implementing complex animations, and mentoring junior developers.",
+      "Liderando el desarrollo móvil en Flutter para una app fintech multiplataforma. Diseñando sistemas de widgets, implementando animaciones complejas y mentorizando a desarrolladores junior.",
     tech: ["Flutter", "Dart", "Riverpod", "Firebase", "CI/CD"],
   },
   {
-    company: "Digital Agency",
-    role: "Frontend Developer",
+    company: "Agencia digital",
+    role: "Desarrollador Frontend",
     period: "2022 — 2024",
     description:
-      "Built responsive web applications and landing pages using Astro and React. Focused on performance optimization, accessibility, and interactive animations.",
+      "Desarrollé aplicaciones web responsive y landing pages usando Astro y React. Enfocado en optimización de rendimiento, accesibilidad y animaciones interactivas.",
     tech: ["Astro", "React", "TypeScript", "Tailwind CSS", "Framer Motion"],
   },
   {
     company: "Startup Inc.",
-    role: "Mobile Developer",
+    role: "Desarrollador Mobile",
     period: "2021 — 2022",
     description:
-      "Developed and shipped Flutter apps for iOS and Android from concept to App Store submission. Integrated payment systems, push notifications, and analytics.",
+      "Desarrollé y publiqué apps Flutter para iOS y Android desde la idea hasta su envío a las tiendas. Integré sistemas de pago, notificaciones push y analítica.",
     tech: ["Flutter", "Dart", "Firebase", "Stripe", "BLoC"],
   },
   {
     company: "Freelance",
-    role: "Full Stack Developer",
+    role: "Desarrollador Full Stack",
     period: "2019 — 2021",
     description:
-      "Delivered web and mobile solutions for small businesses. Built custom WordPress sites, Flutter prototypes, and Node.js backends.",
+      "Entregué soluciones web y móviles para pequeñas empresas. Desarrollé sitios personalizados en WordPress, prototipos en Flutter y backends en Node.js.",
     tech: ["Flutter", "Node.js", "React", "PostgreSQL", "WordPress"],
   },
 ];

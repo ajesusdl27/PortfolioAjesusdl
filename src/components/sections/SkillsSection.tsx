@@ -88,7 +88,7 @@ function SkillCard({ category, index }: { category: SkillCategory; index: number
             {category.name}
           </h3>
           <p className="font-mono text-[10px] text-slate-600">
-            {category.skills.length} skills
+            {category.skills.length} habilidades
           </p>
         </div>
       </div>
@@ -129,13 +129,13 @@ export default function SkillsSection() {
           className="mb-16"
         >
           <p className="font-mono text-xs text-accent/60 tracking-[0.25em] uppercase mb-3">
-            / Skills
+            / Habilidades
           </p>
           <h2 className="font-heading font-bold text-3xl md:text-5xl text-white tracking-tight mb-4">
-            Tech <span className="text-shimmer">Stack</span>
+            Stack <span className="text-shimmer">tecnológico</span>
           </h2>
           <p className="text-slate-500 max-w-md text-sm">
-            Technologies and tools I use to turn ideas into polished, performant products.
+            Tecnologías y herramientas que uso para convertir ideas en productos pulidos y de alto rendimiento.
           </p>
         </motion.div>
 

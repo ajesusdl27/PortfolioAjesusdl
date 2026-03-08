@@ -1,7 +1,7 @@
 ---
-title: "Flutter Analytics Dashboard"
-description: "Real-time analytics dashboard for mobile, featuring interactive charts, KPI widgets, and dark mode. Built with Flutter and connected to a REST API backend."
-tags: ["Mobile", "Dashboard", "Data Viz"]
+title: "Dashboard analítico en Flutter"
+description: "Dashboard de analítica en tiempo real para móvil, con gráficas interactivas, widgets KPI y modo oscuro. Construido con Flutter y conectado a un backend REST API."
+tags: ["Móvil", "Dashboard", "Visualización de datos"]
 tech: ["Flutter", "Dart", "fl_chart", "REST API", "BLoC"]
 featured: false
 bentoSize: "medium"
@@ -10,11 +10,11 @@ year: 2024
 order: 3
 ---
 
-## Overview
+## Resumen
 
-A mobile-first analytics dashboard featuring:
+Un dashboard de analítica mobile-first con:
 
-- **Interactive charts** — Line, bar, and pie charts with touch gestures using fl_chart
-- **Responsive widgets** — KPI cards that adapt to screen size with smooth animations
-- **State management** — BLoC pattern for predictable, testable data flow
-- **Theming** — Full dark/light mode support with Material 3 design tokens
+- **Gráficas interactivas** — Gráficas de líneas, barras y pastel con gestos táctiles usando fl_chart
+- **Widgets responsive** — Tarjetas KPI que se adaptan al tamaño de pantalla con animaciones fluidas
+- **Gestión de estado** — Patrón BLoC para un flujo de datos predecible y testeable
+- **Tematización** — Soporte completo para modo oscuro/claro con tokens de diseño de Material 3

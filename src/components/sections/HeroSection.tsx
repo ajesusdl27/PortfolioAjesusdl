@@ -1,5 +1,5 @@
-import { motion, useMotionValue, useTransform, useSpring, AnimatePresence } from "framer-motion";
-import { useEffect, useState, useRef, type MouseEvent } from "react";
+import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
+import { useEffect } from "react";
 import { useMagneticHover } from "../../hooks/useMagneticHover";
 
 /* ── Character-by-character reveal ── */
@@ -121,7 +121,7 @@ function StatusBadge() {
         <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
       </span>
       <span className="font-mono text-xs text-slate-400 tracking-wider uppercase">
-        Available for work
+        Disponible para trabajar
       </span>
     </motion.div>
   );
@@ -158,9 +158,6 @@ function MouseGlow() {
 }
 
 export default function HeroSection() {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-
   return (
     <section
       id="hero"
@@ -207,10 +204,10 @@ export default function HeroSection() {
         {/* Name — character reveal */}
         <div className="mb-4 overflow-hidden">
           <h1 className="font-heading font-bold text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tighter text-white leading-[0.9]">
-            <AnimatedLetters text="Your" delay={0.3} className="text-shimmer" />
+            <AnimatedLetters text="Antonio" delay={0.3} className="text-shimmer" />
             <br className="sm:hidden" />
             <span className="inline-block w-4 sm:w-6" />
-            <AnimatedLetters text="Name" delay={0.5} className="text-shimmer" />
+            <AnimatedLetters text="Jesús" delay={0.5} className="text-shimmer" />
           </h1>
         </div>
 
@@ -221,8 +218,8 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 1 }}
           className="mb-6"
         >
-          <p className="font-mono text-sm sm:text-base text-accent/80 tracking-widest uppercase">
-            {"< Flutter & Astro Developer />"}
+          <p className="text-base sm:text-lg text-slate-500 max-w-xl mx-auto mb-12 leading-relaxed">
+            {"< Desarrollador Flutter y Astro />"}
           </p>
         </motion.div>
 
@@ -233,10 +230,10 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 1.3 }}
           className="text-base sm:text-lg text-slate-500 max-w-xl mx-auto mb-12 leading-relaxed"
         >
-          Crafting{" "}
-          <span className="text-slate-300">performant mobile apps</span> and{" "}
-          <span className="text-slate-300">immersive web experiences</span>{" "}
-          with obsessive attention to detail.
+          Creando{" "}
+          <span className="text-slate-300">apps móviles de alto rendimiento</span> y{" "}
+          <span className="text-slate-300">experiencias web inmersivas</span>{" "}
+          con una atención obsesiva al detalle.
         </motion.p>
 
         {/* CTA Buttons */}
@@ -247,7 +244,7 @@ export default function HeroSection() {
           className="flex flex-wrap justify-center gap-4"
         >
           <MagneticButton href="#projects" variant="primary">
-            Explore Work
+            Ver proyectos
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M7 17L17 7M17 7H7M17 7V17" />
             </svg>
@@ -273,7 +270,7 @@ export default function HeroSection() {
             className="flex flex-col items-center gap-2"
           >
             <span className="font-mono text-[10px] text-slate-600 tracking-[0.3em] uppercase">
-              Scroll
+              Desplázate
             </span>
             <div className="w-px h-8 bg-gradient-to-b from-accent/40 to-transparent" />
           </motion.div>

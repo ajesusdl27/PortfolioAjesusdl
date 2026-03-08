@@ -1,7 +1,7 @@
 ---
-title: "Flutter E-Commerce App"
-description: "A full-featured mobile e-commerce application built with Flutter, featuring product browsing, cart management, Stripe payments, and real-time order tracking with Firebase."
-tags: ["Mobile", "E-Commerce", "Cross-Platform"]
+title: "App de e-commerce en Flutter"
+description: "Una aplicación móvil de e-commerce completa construida con Flutter, con catálogo de productos, gestión de carrito, pagos con Stripe y seguimiento de pedidos en tiempo real con Firebase."
+tags: ["Móvil", "E-Commerce", "Multiplataforma"]
 tech: ["Flutter", "Dart", "Firebase", "Stripe", "Riverpod"]
 featured: true
 bentoSize: "large"
@@ -11,12 +11,12 @@ year: 2025
 order: 1
 ---
 
-## Overview
+## Resumen
 
-Built a production-ready e-commerce app serving 10k+ users with:
+App de e-commerce lista para producción que da servicio a más de 10k usuarios con:
 
-- **Custom UI system** — Reusable widget library with adaptive layouts for phone and tablet
-- **State management** — Riverpod for reactive, testable architecture
-- **Payments** — Stripe integration with Apple Pay and Google Pay support
-- **Real-time** — Firebase Firestore for live order status and inventory updates
-- **Performance** — Lazy loading, image caching, and optimized list rendering for 60fps scrolling
+- **Sistema de UI personalizado** — Librería reutilizable de widgets con layouts adaptativos para móvil y tablet
+- **Gestión de estado** — Riverpod para una arquitectura reactiva y testeable
+- **Pagos** — Integración con Stripe y soporte para Apple Pay y Google Pay
+- **Tiempo real** — Firebase Firestore para estado de pedidos en vivo y actualización de inventario
+- **Rendimiento** — Lazy loading, caché de imágenes y renderizado optimizado de listas para scroll a 60fps

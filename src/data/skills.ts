@@ -7,7 +7,7 @@ export interface SkillCategory {
 
 export const skillCategories: SkillCategory[] = [
   {
-    name: "Flutter & Mobile",
+    name: "Flutter y móvil",
     icon: "mobile",
     color: "from-accent to-emerald-300",
     skills: [
@@ -22,7 +22,7 @@ export const skillCategories: SkillCategory[] = [
     ],
   },
   {
-    name: "Astro & Web",
+    name: "Astro y web",
     icon: "globe",
     color: "from-accent-secondary to-blue-300",
     skills: [
@@ -33,11 +33,11 @@ export const skillCategories: SkillCategory[] = [
       "Framer Motion",
       "HTML/CSS",
       "SEO",
-      "Web Performance",
+      "Rendimiento web",
     ],
   },
   {
-    name: "Backend & APIs",
+    name: "Backend y APIs",
     icon: "server",
     color: "from-accent-purple to-purple-300",
     skills: [
@@ -51,7 +51,7 @@ export const skillCategories: SkillCategory[] = [
     ],
   },
   {
-    name: "Tools & Workflow",
+    name: "Herramientas y flujo",
     icon: "terminal",
     color: "from-orange-400 to-amber-300",
     skills: [

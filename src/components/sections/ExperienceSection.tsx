@@ -20,13 +20,13 @@ export default function ExperienceSection() {
           className="mb-16"
         >
           <p className="font-mono text-xs text-accent/60 tracking-[0.25em] uppercase mb-3">
-            / Experience
+            / Experiencia
           </p>
           <h2 className="font-heading font-bold text-3xl md:text-5xl text-white tracking-tight mb-4">
-            Work <span className="text-shimmer">History</span>
+            Trayectoria <span className="text-shimmer">profesional</span>
           </h2>
           <p className="text-slate-500 max-w-md text-sm">
-            My professional journey building digital products.
+            Mi recorrido profesional construyendo productos digitales.
           </p>
         </motion.div>
 

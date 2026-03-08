@@ -1,7 +1,7 @@
 ---
-title: "Dev CLI Toolkit"
-description: "A collection of productivity CLI tools for Flutter and web developers — project scaffolding, code generation, and automated testing setup."
-tags: ["CLI", "Developer Tools", "Automation"]
+title: "Toolkit CLI para desarrollo"
+description: "Una colección de herramientas CLI de productividad para desarrolladores Flutter y web: scaffolding de proyectos, generación de código y configuración automatizada de tests."
+tags: ["CLI", "Herramientas para desarrolladores", "Automatización"]
 tech: ["Dart", "Shell", "Node.js"]
 featured: false
 bentoSize: "small"
@@ -10,10 +10,10 @@ year: 2024
 order: 4
 ---
 
-## Overview
+## Resumen
 
-A developer-focused CLI toolkit:
+Un toolkit CLI enfocado en desarrolladores:
 
-- **Project scaffolding** — Generate Flutter and Astro projects with opinionated defaults
-- **Code generation** — Auto-generate models, routes, and boilerplate from templates
-- **Test setup** — Initialize testing frameworks with predefined configurations
+- **Scaffolding de proyectos** — Genera proyectos Flutter y Astro con defaults opinados
+- **Generación de código** — Autogenera modelos, rutas y boilerplate a partir de plantillas
+- **Configuración de tests** — Inicializa frameworks de testing con configuraciones predefinidas

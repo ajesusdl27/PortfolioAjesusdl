@@ -39,14 +39,14 @@ export default function ProjectsSection({ projects }: Props) {
           className="mb-16"
         >
           <p className="font-mono text-xs text-accent/60 tracking-[0.25em] uppercase mb-3">
-            / Projects
+            / Proyectos
           </p>
           <h2 className="font-heading font-bold text-3xl md:text-5xl text-white tracking-tight mb-4">
-            Featured <span className="text-shimmer">Work</span>
+            Trabajo <span className="text-shimmer">destacado</span>
           </h2>
           <p className="text-slate-500 max-w-md text-sm">
-            A curated selection of projects showcasing my expertise across Flutter
-            and web development.
+            Una selección de proyectos que muestra mi experiencia en Flutter
+            y desarrollo web.
           </p>
         </motion.div>
 
