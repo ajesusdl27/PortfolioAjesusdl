@@ -9,6 +9,8 @@ import SkillsSection from "../components/sections/SkillsSection";
 import ProjectsSection from "../components/sections/ProjectsSection";
 import ExperienceSection from "../components/sections/ExperienceSection";
 import ContactSection from "../components/sections/ContactSection.astro";
+import CustomCursor from "../components/ui/CustomCursor";
+import IntroSequence from "../components/ui/IntroSequence";
 
 const allProjects = await getCollection("projects");
 const projects = allProjects
@@ -27,6 +29,8 @@ const projects = allProjects
 ---
 
 <BaseLayout>
+  <IntroSequence client:load />
+  <CustomCursor client:load />
   <NavBar />
 
   <main>

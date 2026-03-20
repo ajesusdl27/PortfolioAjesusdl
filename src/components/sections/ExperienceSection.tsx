@@ -1,11 +1,23 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { useRef } from "react";
 import { experiences } from "../../data/experience";
 import TechBadge from "../ui/TechBadge";
 
 export default function ExperienceSection() {
   const ref = useRef<HTMLElement>(null);
+  const timelineRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const reducedMotion = useReducedMotion();
+
+  // Scroll-synced beam: tracks the timeline container
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start end", "end start"],
+  });
+
+  // Map scroll to beam position: beam travels from top to bottom of timeline
+  const beamTop = useTransform(scrollYProgress, [0, 1], ["-10%", "100%"]);
+  const beamOpacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0, 1, 1, 0]);
 
   return (
     <section id="experience" className="py-32 relative" ref={ref}>
@@ -31,11 +43,19 @@ export default function ExperienceSection() {
         </motion.div>
 
         {/* Timeline */}
-        <div className="relative">
-          {/* Animated beam line */}
+        <div className="relative" ref={timelineRef}>
+          {/* Scroll-synced beam line */}
           <div className="absolute left-[18px] md:left-1/2 top-0 bottom-0 w-px overflow-hidden">
             <div className="w-full h-full bg-white/[0.04]" />
-            <div className="absolute top-0 left-0 w-full h-32 beam-line" />
+            {/* Beam synced to scroll */}
+            <motion.div
+              className="absolute left-0 w-full h-32"
+              style={{
+                top: reducedMotion ? "0%" : beamTop,
+                opacity: reducedMotion ? 0.5 : beamOpacity,
+                background: "linear-gradient(180deg, transparent 0%, rgba(110,231,183,0.6) 30%, rgba(34,211,238,0.6) 70%, transparent 100%)",
+              }}
+            />
           </div>
 
           <div className="space-y-16">
@@ -94,18 +114,18 @@ export default function ExperienceSection() {
                   <div className="glass-card holo-border p-6 space-y-3 group">
                     {/* Period + role */}
                     <div className="space-y-1.5">
-                      <span className="font-mono text-[10px] text-accent/50 tracking-[0.2em] uppercase">
+                      <span className="font-mono text-[10px] text-accent/60 tracking-[0.2em] uppercase">
                         {exp.period}
                       </span>
                       <h3 className="font-heading font-bold text-white text-lg group-hover:text-shimmer transition-all duration-500">
                         {exp.role}
                       </h3>
-                      <p className="font-mono text-xs text-slate-500">
+                      <p className="font-mono text-xs text-slate-400">
                         {exp.company}
                       </p>
                     </div>
 
-                    <p className="text-sm text-slate-500 leading-relaxed">
+                    <p className="text-sm text-slate-400 leading-relaxed">
                       {exp.description}
                     </p>
 

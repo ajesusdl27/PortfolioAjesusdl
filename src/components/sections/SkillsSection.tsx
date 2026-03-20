@@ -56,17 +56,29 @@ const cardVariant: Variants = {
   },
 };
 
-const badgeVariant: Variants = {
-  hidden: { opacity: 0, scale: 0.5, filter: "blur(4px)" },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    filter: "blur(0px)",
-    transition: { duration: 0.4 },
-  },
-};
+/* ── Marquee row for skills ── */
+function SkillMarquee({ skills, reverse, speed = 25 }: { skills: string[]; reverse?: boolean; speed?: number }) {
+  // Duplicate for seamless loop
+  const doubled = [...skills, ...skills];
+  const duration = skills.length * speed / 8;
+
+  return (
+    <div className="marquee-container">
+      <div
+        className={`marquee-track ${reverse ? "marquee-track-reverse" : ""}`}
+        style={{ "--marquee-duration": `${duration}s` } as React.CSSProperties}
+      >
+        {doubled.map((skill, i) => (
+          <TechBadge key={`${skill}-${i}`} label={skill} />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function SkillCard({ category, index }: { category: SkillCategory; index: number }) {
+  const isReverse = index % 2 !== 0;
+
   return (
     <motion.div
       variants={cardVariant}
@@ -89,23 +101,16 @@ function SkillCard({ category, index }: { category: SkillCategory; index: number
           <h3 className="font-heading font-semibold text-white text-sm tracking-tight">
             {category.name}
           </h3>
-          <p className="font-mono text-[10px] text-slate-600">
+          <p className="font-mono text-[11px] text-slate-400">
             {category.skills.length} habilidades
           </p>
         </div>
       </div>
 
-      {/* Skills */}
-      <motion.div
-        variants={container}
-        className="relative flex flex-wrap gap-1.5"
-      >
-        {category.skills.map((skill) => (
-          <motion.div key={skill} variants={badgeVariant}>
-            <TechBadge label={skill} />
-          </motion.div>
-        ))}
-      </motion.div>
+      {/* Skills — infinite marquee ticker */}
+      <div className="relative">
+        <SkillMarquee skills={category.skills} reverse={isReverse} />
+      </div>
 
       {/* Bottom line accent */}
       <div className={`absolute bottom-0 left-0 h-[2px] w-0 group-hover:w-full

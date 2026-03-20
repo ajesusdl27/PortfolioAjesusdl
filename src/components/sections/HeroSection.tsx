@@ -1,6 +1,120 @@
-import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
-import { useEffect } from "react";
+import {
+  motion,
+  useMotionValue,
+  useTransform,
+  useSpring,
+  useScroll,
+  useReducedMotion,
+} from "framer-motion";
+import { useEffect, useRef } from "react";
 import { useMagneticHover } from "../../hooks/useMagneticHover";
+
+/* ── Interactive Particle Canvas ── */
+function ParticleCanvas() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const mouseRef = useRef({ x: -1000, y: -1000 });
+  const reducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (reducedMotion) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let w = 0, h = 0;
+    function resize() {
+      w = canvas!.width = window.innerWidth;
+      h = canvas!.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener("resize", resize);
+
+    function handleMouse(e: globalThis.MouseEvent) {
+      mouseRef.current = { x: e.clientX, y: e.clientY };
+    }
+    window.addEventListener("mousemove", handleMouse);
+
+    const colors = ["110,231,183", "34,211,238", "167,139,250"];
+    const particles = Array.from({ length: 70 }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      size: Math.random() * 1.8 + 0.4,
+      alpha: Math.random() * 0.5 + 0.15,
+      color: colors[Math.floor(Math.random() * colors.length)],
+    }));
+
+    let animId: number;
+    function animate() {
+      ctx!.clearRect(0, 0, w, h);
+      const mx = mouseRef.current.x;
+      const my = mouseRef.current.y;
+
+      for (const p of particles) {
+        const dx = p.x - mx;
+        const dy = p.y - my;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 160) {
+          const force = (160 - dist) / 160;
+          p.vx += (dx / dist) * force * 0.15;
+          p.vy += (dy / dist) * force * 0.15;
+        }
+        p.vx *= 0.985;
+        p.vy *= 0.985;
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0) p.x = w;
+        if (p.x > w) p.x = 0;
+        if (p.y < 0) p.y = h;
+        if (p.y > h) p.y = 0;
+
+        ctx!.beginPath();
+        ctx!.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx!.fillStyle = `rgba(${p.color},${p.alpha})`;
+        ctx!.fill();
+      }
+
+      // Connection lines
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const a = particles[i], b = particles[j];
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 130) {
+            ctx!.beginPath();
+            ctx!.moveTo(a.x, a.y);
+            ctx!.lineTo(b.x, b.y);
+            ctx!.strokeStyle = `rgba(110,231,183,${0.055 * (1 - dist / 130)})`;
+            ctx!.lineWidth = 0.5;
+            ctx!.stroke();
+          }
+        }
+      }
+
+      animId = requestAnimationFrame(animate);
+    }
+    animate();
+
+    return () => {
+      cancelAnimationFrame(animId);
+      window.removeEventListener("resize", resize);
+      window.removeEventListener("mousemove", handleMouse);
+    };
+  }, [reducedMotion]);
+
+  if (reducedMotion) return null;
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 z-[1] pointer-events-none hidden md:block"
+      aria-hidden="true"
+    />
+  );
+}
 
 /* ── Character-by-character reveal ── */
 function AnimatedLetters({ text, className, delay = 0 }: { text: string; className?: string; delay?: number }) {
@@ -36,7 +150,7 @@ function MagneticButton({
   href: string;
   variant?: "primary" | "secondary";
 }) {
-  const { ref, x, y, handleMouseMove, handleMouseLeave } = useMagneticHover(0.4);
+  const { ref, x, y, handleMouseMove, handleMouseLeave } = useMagneticHover(0.25);
 
   const primary =
     "bg-gradient-to-r from-accent to-accent-secondary text-base font-semibold shadow-[0_0_30px_rgba(110,231,183,0.3)] hover:shadow-[0_0_50px_rgba(110,231,183,0.5)]";
@@ -62,8 +176,8 @@ function MagneticButton({
 }
 
 /* ── Orbit Ring ── */
-function OrbitRing({ size, duration, delay, dotCount }: {
-  size: number; duration: number; delay: number; dotCount: number;
+function OrbitRing({ size, duration, delay, dotCount, reverse = false, color = "bg-accent/40" }: {
+  size: number; duration: number; delay: number; dotCount: number; reverse?: boolean; color?: string;
 }) {
   return (
     <motion.div
@@ -81,13 +195,13 @@ function OrbitRing({ size, duration, delay, dotCount }: {
       {Array.from({ length: dotCount }).map((_, i) => (
         <motion.div
           key={i}
-          className="absolute w-1 h-1 rounded-full bg-accent/40"
+          className="absolute w-1 h-1 rounded-full"
           style={{
             top: "50%",
             left: "50%",
           }}
           animate={{
-            rotate: 360,
+            rotate: reverse ? -360 : 360,
           }}
           transition={{
             duration: duration,
@@ -97,7 +211,7 @@ function OrbitRing({ size, duration, delay, dotCount }: {
           }}
         >
           <div
-            className="absolute w-1 h-1 rounded-full bg-accent/40"
+            className={`absolute w-1.5 h-1.5 rounded-full ${color} shadow-[0_0_6px_rgba(110,231,183,0.4)]`}
             style={{ transform: `translateX(${size / 2}px) translateY(-50%)` }}
           />
         </motion.div>
@@ -158,29 +272,53 @@ function MouseGlow() {
 }
 
 export default function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const reducedMotion = useReducedMotion();
+
+  // Scroll-linked parallax
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  const titleY = useTransform(scrollYProgress, [0, 1], [0, -80]);
+  const subtitleY = useTransform(scrollYProgress, [0, 1], [0, -40]);
+  const ringsScale = useTransform(scrollYProgress, [0, 1], [1, 1.3]);
+  const ringsOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+  const bgGlowY = useTransform(scrollYProgress, [0, 1], [0, 100]);
+
   return (
     <section
+      ref={sectionRef}
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       {/* Grid bg */}
       <div className="absolute inset-0 bg-grid opacity-30" />
 
-      {/* Orbit rings */}
-      <div className="absolute inset-0 pointer-events-none hidden md:block">
-        <OrbitRing size={500} duration={30} delay={0.5} dotCount={3} />
-        <OrbitRing size={700} duration={45} delay={0.8} dotCount={4} />
-        <OrbitRing size={900} duration={60} delay={1.1} dotCount={5} />
-      </div>
+      {/* Interactive particles (desktop only) */}
+      <ParticleCanvas />
 
-      {/* Radial glows */}
+      {/* Orbit rings — alternating directions, different speeds & colors */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none hidden md:block"
+        style={reducedMotion ? {} : { scale: ringsScale, opacity: ringsOpacity }}
+      >
+        <OrbitRing size={450} duration={25} delay={0.5} dotCount={3} reverse={false} color="bg-accent/50" />
+        <OrbitRing size={650} duration={40} delay={0.8} dotCount={4} reverse={true} color="bg-accent-secondary/50" />
+        <OrbitRing size={850} duration={55} delay={1.1} dotCount={5} reverse={false} color="bg-accent-purple/40" />
+        <OrbitRing size={1050} duration={70} delay={1.4} dotCount={3} reverse={true} color="bg-accent/30" />
+      </motion.div>
+
+      {/* Radial glows with scroll parallax */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 2 }}
         className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        style={reducedMotion ? {} : { y: bgGlowY }}
       >
-        <div className="w-[500px] h-[500px] rounded-full bg-accent/[0.07] blur-[150px]" />
+        <div className="w-[600px] h-[600px] rounded-full bg-accent/[0.08] blur-[180px]" />
       </motion.div>
       <motion.div
         initial={{ opacity: 0 }}
@@ -188,7 +326,15 @@ export default function HeroSection() {
         transition={{ duration: 2, delay: 0.5 }}
         className="absolute bottom-1/4 right-1/4"
       >
-        <div className="w-[300px] h-[300px] rounded-full bg-accent-secondary/[0.05] blur-[120px]" />
+        <div className="w-[350px] h-[350px] rounded-full bg-accent-secondary/[0.06] blur-[140px]" />
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 2, delay: 1 }}
+        className="absolute top-1/2 left-1/4"
+      >
+        <div className="w-[250px] h-[250px] rounded-full bg-accent-purple/[0.05] blur-[120px]" />
       </motion.div>
 
       {/* Mouse glow */}
@@ -201,22 +347,26 @@ export default function HeroSection() {
           <StatusBadge />
         </div>
 
-        {/* Name — character reveal */}
-        <div className="mb-4 overflow-hidden">
+        {/* Name — character reveal with dramatic gradient + scroll parallax */}
+        <motion.div
+          className="mb-4 overflow-hidden"
+          style={reducedMotion ? {} : { y: titleY }}
+        >
           <h1 className="font-heading font-bold text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tighter text-white leading-[0.9]">
             <AnimatedLetters text="Antonio" delay={0.3} className="text-shimmer" />
             <br className="sm:hidden" />
             <span className="inline-block w-4 sm:w-6" />
             <AnimatedLetters text="Jesús" delay={0.5} className="text-shimmer" />
           </h1>
-        </div>
+        </motion.div>
 
-        {/* Role with typing cursor */}
+        {/* Role with typing cursor — parallax */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1 }}
           className="mb-6"
+          style={reducedMotion ? {} : { y: subtitleY }}
         >
           <p className="text-base sm:text-lg text-slate-500 max-w-xl mx-auto mb-12 leading-relaxed">
             {"< Desarrollador Flutter y Astro Freelance />"}
@@ -266,7 +416,7 @@ export default function HeroSection() {
           className="mt-20"
         >
           <motion.div
-            animate={{ y: [0, 10, 0] }}
+            animate={reducedMotion ? {} : { y: [0, 10, 0] }}
             transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
             className="flex flex-col items-center gap-2"
           >

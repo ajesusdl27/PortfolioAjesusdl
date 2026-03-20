@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from "framer-motion";
 import { useRef, type MouseEvent } from "react";
 import TechBadge from "./TechBadge";
 
@@ -16,6 +16,7 @@ export default function BentoCard({ title, description, tech, size, github, demo
   const cardRef = useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(0.5);
   const mouseY = useMotionValue(0.5);
+  const reducedMotion = useReducedMotion();
 
   const rotateX = useSpring(useTransform(mouseY, [0, 1], [8, -8]), { stiffness: 200, damping: 25 });
   const rotateY = useSpring(useTransform(mouseX, [0, 1], [-8, 8]), { stiffness: 200, damping: 25 });
@@ -56,8 +57,8 @@ export default function BentoCard({ title, description, tech, size, github, demo
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
-        rotateX,
-        rotateY,
+        rotateX: reducedMotion ? 0 : rotateX,
+        rotateY: reducedMotion ? 0 : rotateY,
         transformPerspective: 1000,
         transformStyle: "preserve-3d",
       }}
@@ -82,27 +83,34 @@ export default function BentoCard({ title, description, tech, size, github, demo
         }}
       />
 
-      {/* Holographic border on hover */}
+      {/* Enhanced multi-color holographic border on hover */}
       <div
         className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100
                    transition-opacity duration-500"
         style={{
           background:
-            "conic-gradient(from 0deg, rgba(110,231,183,0.2), rgba(34,211,238,0.2), rgba(167,139,250,0.2), rgba(110,231,183,0.2))",
+            "conic-gradient(from var(--holo-angle, 0deg), rgba(110,231,183,0.3), rgba(34,211,238,0.3), rgba(167,139,250,0.3), rgba(236,72,153,0.2), rgba(251,146,60,0.2), rgba(34,211,238,0.3), rgba(110,231,183,0.3))",
           WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
           WebkitMaskComposite: "xor",
           maskComposite: "exclude",
           padding: "1px",
           borderRadius: "inherit",
+          animation: "holo-spin-fast 2.5s linear infinite",
         }}
       />
+
+      {/* Noise texture overlay (hover) */}
+      <div className="card-noise" />
+
+      {/* Scanline overlay (hover) */}
+      <div className="scanline-overlay" />
 
       {/* Content */}
       <div className="relative z-10 space-y-3" style={{ transform: "translateZ(20px)" }}>
         <div className="flex items-start justify-between gap-3">
           <div className="space-y-2">
             {/* Index label */}
-            <span className="font-mono text-[10px] text-accent/40 tracking-[0.3em] uppercase">
+            <span className="font-mono text-[10px] text-accent/60 tracking-[0.3em] uppercase">
               {String(index + 1).padStart(2, "0")}
             </span>
             <h3 className="font-heading font-bold text-lg md:text-xl text-white
@@ -145,7 +153,7 @@ export default function BentoCard({ title, description, tech, size, github, demo
             )}
           </div>
         </div>
-        <p className="text-sm text-slate-500 leading-relaxed">
+        <p className="text-sm text-slate-400 leading-relaxed">
           {description}
         </p>
       </div>
